@@ -1,10 +1,17 @@
+const Tarefa = require('../models/Tarefa')
+
 exports.listarTodas = (req, res) => {
-    const dados = [
-        {id: 1, descrição: 'Pagar contas mensais'},
-        {id: 2, descrição: 'Fazer trabalhos da faculdade'}
-    ]
-    res.status(200)
-    res.send(dados)
+    try{
+
+        Tarefa.find().then((dados) => {
+            res.status(200)
+            res.send(dados)
+        })
+
+    } catch (erro) {
+        res.status(500)
+        res.send({mensagem: erro.mensagem})
+    }
 }
 
 exports.listarPorId = (req, res) => {
