@@ -1,26 +1,17 @@
 const express = require('express')
+require('dotenv').config()
 
 const app = express()
 app.use(express.json())
-app.use(espress.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 
 
 // Rotas 
-app.get('/produtos', (req, res) => {
+const router = require('./routes')
+app.use('api/v1/', router)
 
-    const dados = [
-        {'id': 1, 'descrição': 'Sabão em pó', 'quantidade': 2},
-        {'id': 2, 'descrição': 'Sabão de barra', 'quantidade': 15},
-        {'id': 3, 'descrição': 'Pasta de dente', 'quantidade': 20}
-    ]
+// subindo a API
 
-    res.status(200)
-    res.send(dados)
-    console.log('Consultando na rota /produtos')
-})
-
-const port = 3007
-
-app.listen(port, () =>{
-    console.log('Servidor rodando na porta ${port}')
+app.listen(process.env.PORT, () => {
+    console.log('API rodando na porta ${process.env.PORT}')
 })
