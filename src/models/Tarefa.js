@@ -1,6 +1,5 @@
-const mongoose = require('mongoose')
-const mogoose = require('../conection')
-const Schema = mogoose.Schema
+const mongoose = require('../connection')
+const Schema = mongoose.Schema
 
 const tarefaSchema = new Schema({
     descricao: {
@@ -11,9 +10,9 @@ const tarefaSchema = new Schema({
         type: Date,
         required: false
     },
-    realizada: {
+    realizado: {
         type: Boolean,
-        required: true 
+        required: true
     }
 })
 
